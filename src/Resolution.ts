@@ -57,9 +57,7 @@ export default class Resolution {
     const ens = isApi(sourceConfig?.ens)
       ? new UdApi(sourceConfig?.ens)
       : new Ens(sourceConfig?.ens);
-    const uns = isApi(sourceConfig?.uns)
-      ? new UdApi(sourceConfig?.uns)
-      : new Uns(sourceConfig?.uns);
+    const uns = new Uns(sourceConfig?.uns);
     const zns = isApi(sourceConfig?.zns)
       ? new UdApi(sourceConfig?.zns)
       : new Zns(sourceConfig?.zns);

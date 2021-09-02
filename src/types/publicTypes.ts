@@ -25,10 +25,15 @@ export type ZnsSource = NamingServiceSource & {
 };
 
 export type SourceConfig = {
-  uns?: UnsSource | Api;
+  uns?: {locations: {Layer1: UnsSource; Layer2: UnsSource}};
   zns?: ZnsSource | Api;
   ens?: EnsSource | Api;
 };
+
+export enum UnsLocation {
+  Layer1 = 'Layer1',
+  Layer2 = 'Layer2',
+}
 
 export enum NamingServiceName {
   UNS = 'UNS',
@@ -36,10 +41,15 @@ export enum NamingServiceName {
   ZNS = 'ZNS',
 }
 
-export type ResolutionMethod = NamingServiceName | 'UDAPI';
+export type ResolutionMethod = NamingServiceName | UnsLocation | 'UDAPI';
 
 export type AutoNetworkConfigs = {
-  uns?: {url: string} | {provider: Provider};
+  uns?: {
+    location: {
+      Layer1: {url: string} | {provider: Provider};
+      Layer2: {url: string} | {provider: Provider};
+    };
+  };
   ens?: {url: string} | {provider: Provider};
   zns?: {url: string} | {provider: Provider};
 };
